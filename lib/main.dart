@@ -7,6 +7,7 @@ import 'core/helper_function/on_generate_routes.dart';
 import 'core/services/custom_bloc_observer.dart';
 import 'core/services/service_locator.dart';
 import 'core/services/supabase_storage_service.dart';
+import 'core/utils/app_colors.dart';
 import 'core/utils/app_keys.dart';
 import 'core/utils/k_platform.dart';
 import 'features/dashboard/presentation/views/dashboard_view.dart';
@@ -41,9 +42,14 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Fruit Hub Dashboard',
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        fontFamily: 'Cairo',
+        scaffoldBackgroundColor: Colors.white,
+        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
+      ),
       onGenerateRoute: onGenerateRoutes,
       initialRoute: DashboardView.routeName,
     );
