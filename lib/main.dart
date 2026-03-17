@@ -1,3 +1,4 @@
+import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:bloc/bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,7 @@ import 'core/services/custom_bloc_observer.dart';
 import 'core/services/service_locator.dart';
 import 'core/services/supabase_storage_service.dart';
 import 'core/utils/app_keys.dart';
+import 'core/utils/k_platform.dart';
 import 'features/dashboard/presentation/views/dashboard_view.dart';
 import 'firebase_options.dart';
 
@@ -22,6 +24,16 @@ Future<void> main() async {
 
   Bloc.observer = CustomBlocObserver();
   runApp(const MainApp());
+
+  if (KPlatform.isDesktop) {
+    doWhenWindowReady(() {
+      appWindow.minSize = Size(600, 600);
+      appWindow.alignment = Alignment.center;
+      appWindow.title = "FruitHub Dashboard";
+      // appWindow.maximize();
+      appWindow.show();
+    });
+  }
 }
 
 class MainApp extends StatelessWidget {
