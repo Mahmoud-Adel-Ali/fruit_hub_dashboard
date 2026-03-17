@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:fruit_hub_dashboard/core/utils/app_colors.dart';
-import 'package:fruit_hub_dashboard/core/utils/app_text_styles.dart';
 
+import '../../../../core/utils/app_colors.dart';
+import '../../../../core/utils/app_text_styles.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../../../add_product/presentation/views/add_product_view.dart';
+import '../../../orders/presentation/views/orders_view.dart';
 
 class DashboardView extends StatelessWidget {
   const DashboardView({super.key});
@@ -28,6 +29,12 @@ class DashboardView extends StatelessWidget {
               text: 'Add Data',
               onPressed: () {
                 Navigator.of(context).pushNamed(AddProductView.routeName);
+              },
+            ),
+            CustomButton(
+              text: 'View Orders',
+              onPressed: () {
+                Navigator.of(context).pushNamed(OrdersView.routeName);
               },
             ),
           ],
