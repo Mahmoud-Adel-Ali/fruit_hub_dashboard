@@ -8,14 +8,17 @@ class FilterSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        TextButton.icon(
-          onPressed: () {},
-          icon: const Icon(Icons.filter_list, color: AppColors.primaryColor),
-          label: Text("filter", style: AppTextStyles.regular13),
-        ),
-      ],
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        children: [
+          TextButton.icon(
+            onPressed: () {},
+            icon: const Icon(Icons.filter_list, color: AppColors.primaryColor),
+            label: Text("filter", style: AppTextStyles.regular13),
+          ),
+        ],
+      ),
     );
   }
 }
