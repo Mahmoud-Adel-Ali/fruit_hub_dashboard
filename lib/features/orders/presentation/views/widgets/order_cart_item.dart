@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../../data/models/order_model.dart';
+import '../../../domain/entities/order_entity.dart';
 
 class OrderCartItem extends StatelessWidget {
-  final OrderModel order;
+  final OrderEntity order;
 
   const OrderCartItem({super.key, required this.order});
 

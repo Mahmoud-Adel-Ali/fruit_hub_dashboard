@@ -1,3 +1,5 @@
+import '../../domain/entities/shipping_address_entity.dart';
+
 class ShippingAddressModel {
   final String name;
   final String phone;
@@ -40,6 +42,16 @@ class ShippingAddressModel {
       floor: json['floor'] as String,
     );
   }
+
+  ShippingAddressEntity toEntity() => ShippingAddressEntity(
+    name: name,
+    phone: phone,
+    email: email,
+    city: city,
+    address: address,
+    addressDetails: addressDetails,
+    floor: floor,
+  );
 
   String get fullAddress => '$city - $address - $addressDetails - $floor';
 }

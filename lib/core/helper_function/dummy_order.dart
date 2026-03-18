@@ -1,15 +1,15 @@
 import 'dart:math';
 
-import '../../features/orders/data/models/order_model.dart';
-import '../../features/orders/data/models/order_product_model.dart';
-import '../../features/orders/data/models/shipping_address_model.dart';
+import '../../features/orders/domain/entities/order_entity.dart';
+import '../../features/orders/domain/entities/order_product_entity.dart';
+import '../../features/orders/domain/entities/shipping_address_entity.dart';
 
 class DummyOrder {
   static final _random = Random();
 
-  static OrderModel getOrder() {
+  static OrderEntity getOrder() {
     final products = List.generate(3, (index) {
-      return OrderProductModel(
+      return OrderProductEntity(
         name: "Product ${index + 1}",
         code: "CODE-${_random.nextInt(9999)}",
         image: "https://via.placeholder.com/150",
@@ -23,11 +23,11 @@ class DummyOrder {
       (sum, item) => sum + (item.price * item.quantity),
     );
 
-    return OrderModel(
+    return OrderEntity(
       totalPrice: total,
       uId: "USER_${_random.nextInt(99999)}",
       paymentMethod: _random.nextBool() ? "cash" : "card",
-      shippingAddress: ShippingAddressModel(
+      shippingAddress: ShippingAddressEntity(
         name: "Test User",
         phone: "01000000000",
         email: "test@mail.com",

@@ -1,3 +1,5 @@
+import '../../domain/entities/order_product_entity.dart';
+
 class OrderProductModel {
   final String name;
   final String code;
@@ -32,4 +34,12 @@ class OrderProductModel {
       quantity: json['quantity'] as int,
     );
   }
+
+  OrderProductEntity toEntity() => OrderProductEntity(
+    name: name,
+    code: code,
+    image: image,
+    price: price,
+    quantity: quantity,
+  );
 }

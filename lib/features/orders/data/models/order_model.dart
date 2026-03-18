@@ -1,3 +1,4 @@
+import '../../domain/entities/order_entity.dart';
 import 'order_product_model.dart';
 import 'shipping_address_model.dart';
 
@@ -36,6 +37,14 @@ class OrderModel {
       json['orderProducts'].map((x) => OrderProductModel.fromJson(x)),
     ),
     paymentMethod: json['paymentMethod'],
+  );
+
+  OrderEntity toEntity() => OrderEntity(
+    totalPrice: totalPrice,
+    uId: uId,
+    shippingAddress: shippingAddress.toEntity(),
+    orderProducts: orderProducts.map((x) => x.toEntity()).toList(),
+    paymentMethod: paymentMethod,
   );
 }
 
