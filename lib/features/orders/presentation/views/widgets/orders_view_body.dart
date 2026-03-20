@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/helper_function/dummy_order.dart';
+import '../../../domain/entities/order_entity.dart';
 import 'orders_items_list_view.dart';
 
 class OrdersViewBody extends StatelessWidget {
-  const OrdersViewBody({super.key});
+  const OrdersViewBody({super.key, required this.orders});
+  final List<OrderEntity> orders;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,8 @@ class OrdersViewBody extends StatelessWidget {
         children: [
           const SizedBox(),
           OrdersItemsListView(
-            orders: List.generate(10, (index) => DummyOrder.getOrder()),
+            orders: orders,
+            // orders: List.generate(10, (index) => DummyOrder.getOrder()),
           ),
           const SizedBox(),
         ],

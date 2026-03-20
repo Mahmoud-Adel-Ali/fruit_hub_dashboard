@@ -97,7 +97,7 @@ class OrderCartItem extends StatelessWidget {
                     placeholder: (context, url) => const SizedBox(
                       width: 24,
                       height: 24,
-                      child: CircularProgressIndicator(),
+                      // child: CircularProgressIndicator(),
                     ),
                     errorWidget: (context, url, error) =>
                         const Icon(Icons.error),

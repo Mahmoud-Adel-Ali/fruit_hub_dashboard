@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
+import '../../../../core/helper_function/dummy_order.dart';
 import '../../../../core/services/service_locator.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_styles.dart';
@@ -25,8 +27,45 @@ class OrdersView extends StatelessWidget {
       ),
       body: BlocProvider(
         create: (context) => FetchOrdersCubit(repo: getit.get<OrdersRepo>()),
-        child: OrdersViewBody(),
+        child: OrdersViewBodyBlocConsumer(),
       ),
+    );
+  }
+}
+
+class OrdersViewBodyBlocConsumer extends StatefulWidget {
+  const OrdersViewBodyBlocConsumer({super.key});
+
+  @override
+  State<OrdersViewBodyBlocConsumer> createState() =>
+      _OrdersViewBodyBlocConsumerState();
+}
+
+class _OrdersViewBodyBlocConsumerState
+    extends State<OrdersViewBodyBlocConsumer> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<FetchOrdersCubit>().fetchOrders();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocConsumer<FetchOrdersCubit, FetchOrdersState>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        if (state is FetchOrdersSuccess) {
+          return OrdersViewBody(orders: state.orders);
+        } else if (state is FetchOrdersFailure) {
+          return Center(child: Text(state.message));
+        } else {
+          return Skeletonizer(
+            child: OrdersViewBody(
+              orders: List.generate(3, (index) => DummyOrder.getOrder()),
+            ),
+          );
+        }
+      },
     );
   }
 }
