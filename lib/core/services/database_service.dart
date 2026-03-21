@@ -11,7 +11,7 @@ abstract class DatabaseService {
     Map<String, dynamic>? query,
   });
 
-  Stream<dynamic> streamData({
+  Stream streamData({
     required String path,
     Map<String, dynamic>? query,
   });

@@ -54,7 +54,7 @@ class FirestoreService implements DatabaseService {
   }
 
   @override
-  Stream<dynamic> streamData({
+  Stream streamData({
     required String path,
     Map<String, dynamic>? query,
   }) async* {
@@ -70,8 +70,6 @@ class FirestoreService implements DatabaseService {
         data = data.limit(limit);
       }
     }
-    // var result = data.snapshots().listen((event) {});
-    // yield result.docs.map((e) => e.data()).toList();
     await for (var result in data.snapshots()) {
       yield result.docs.map((e) => e.data()).toList();
     }
