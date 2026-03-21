@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../core/enums/order_enum.dart';
 import '../../../domain/entities/order_entity.dart';
 
 class OrderCartItem extends StatelessWidget {
@@ -30,27 +31,20 @@ class OrderCartItem extends StatelessWidget {
                 const Spacer(),
 
                 // Order Status
-                // Container(
-                //   padding:
-                //       const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                //   decoration: BoxDecoration(
-                //     color: orderModel.status == OrderStatusEnum.pending
-                //         ? Colors.orange
-                //         : orderModel.status == OrderStatusEnum.accepted
-                //             ? Colors.green
-                //             : orderModel.status == OrderStatusEnum.delivered
-                //                 ? Colors.blue
-                //                 : Colors.red,
-                //     borderRadius: BorderRadius.circular(8),
-                //   ),
-                //   child: Text(
-                //     orderModel.status.name,
-                //     style: const TextStyle(
-                //       fontSize: 14,
-                //       color: Colors.white,
-                //     ),
-                //   ),
-                // ),
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 4,
+                  ),
+                  decoration: BoxDecoration(
+                    color: order.status.color,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Text(
+                    order.status.label,
+                    style: const TextStyle(fontSize: 14, color: Colors.white),
+                  ),
+                ),
               ],
             ),
             const SizedBox(height: 8),
