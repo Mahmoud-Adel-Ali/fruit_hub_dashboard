@@ -1,3 +1,4 @@
+import '../../../../core/enums/order_enum.dart';
 import 'order_product_entity.dart';
 import 'shipping_address_entity.dart';
 
@@ -7,6 +8,7 @@ class OrderEntity {
   final ShippingAddressEntity shippingAddress;
   final List<OrderProductEntity> orderProducts;
   final String paymentMethod;
+  final OrderStatus status;
 
   OrderEntity({
     required this.totalPrice,
@@ -14,5 +16,6 @@ class OrderEntity {
     required this.shippingAddress,
     required this.orderProducts,
     required this.paymentMethod,
+    required this.status,
   });
 }

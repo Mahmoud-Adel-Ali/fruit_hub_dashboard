@@ -1,3 +1,4 @@
+import '../../../../core/enums/order_enum.dart';
 import '../../domain/entities/order_entity.dart';
 import 'order_product_model.dart';
 import 'shipping_address_model.dart';
@@ -8,6 +9,7 @@ class OrderModel {
   final ShippingAddressModel shippingAddress;
   final List<OrderProductModel> orderProducts;
   final String paymentMethod;
+  final OrderStatus status;
 
   OrderModel({
     required this.totalPrice,
@@ -15,13 +17,14 @@ class OrderModel {
     required this.shippingAddress,
     required this.orderProducts,
     required this.paymentMethod,
+    required this.status,
   });
 
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
       'totalPrice': totalPrice,
       'uId': uId,
-      'status': 'pending',
+      'status': status.toJson(),
       'date': DateTime.now().toString(),
       'shippingAddress': shippingAddress.toJson(),
       'orderProducts': orderProducts.map((x) => x.toJson()).toList(),
@@ -32,6 +35,7 @@ class OrderModel {
   factory OrderModel.fromJson(Map<String, dynamic> json) => OrderModel(
     totalPrice: json['totalPrice'].toDouble(),
     uId: json['uId'],
+    status: OrderStatusEx.fromJson(json['status']),
     shippingAddress: ShippingAddressModel.fromJson(json['shippingAddress']),
     orderProducts: List<OrderProductModel>.from(
       json['orderProducts'].map((x) => OrderProductModel.fromJson(x)),
@@ -42,6 +46,7 @@ class OrderModel {
   OrderEntity toEntity() => OrderEntity(
     totalPrice: totalPrice,
     uId: uId,
+    status: status,
     shippingAddress: shippingAddress.toEntity(),
     orderProducts: orderProducts.map((x) => x.toEntity()).toList(),
     paymentMethod: paymentMethod,

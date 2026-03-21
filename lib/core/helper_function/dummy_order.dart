@@ -3,6 +3,7 @@ import 'dart:math';
 import '../../features/orders/domain/entities/order_entity.dart';
 import '../../features/orders/domain/entities/order_product_entity.dart';
 import '../../features/orders/domain/entities/shipping_address_entity.dart';
+import '../enums/order_enum.dart';
 
 class DummyOrder {
   static final _random = Random();
@@ -27,6 +28,7 @@ class DummyOrder {
       totalPrice: total,
       uId: "USER_${_random.nextInt(99999)}",
       paymentMethod: _random.nextBool() ? "cash" : "card",
+      status: OrderStatus.pending,
       shippingAddress: ShippingAddressEntity(
         name: "Test User",
         phone: "01000000000",
