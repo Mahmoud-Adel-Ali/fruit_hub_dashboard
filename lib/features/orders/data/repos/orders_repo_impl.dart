@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:fruit_hub_dashboard/core/enums/order_enum.dart';
 
 import '../../../../core/errors/failures.dart';
 import '../../../../core/services/database_service.dart';
@@ -25,5 +26,14 @@ class OrdersRepoImpl implements OrdersRepo {
     } catch (e) {
       yield Left(ServerFailure('failed to fetch orders!.'));
     }
+  }
+
+  @override
+  Future<Either<Failure, void>> updateOrderStatus({
+    required OrderStatus status,
+    required String orderId,
+  }) {
+    // TODO: implement updateOrderStatus
+    throw UnimplementedError();
   }
 }
