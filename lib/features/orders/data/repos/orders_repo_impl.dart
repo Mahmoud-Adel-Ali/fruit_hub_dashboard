@@ -29,11 +29,20 @@ class OrdersRepoImpl implements OrdersRepo {
   }
 
   @override
-  Future<Either<Failure, void>> updateOrderStatus({
+  Future<Either<Failure, void>> updateOrder({
     required OrderStatus status,
     required String orderId,
-  }) {
-    // TODO: implement updateOrderStatus
-    throw UnimplementedError();
+  }) async {
+    try {
+      return Right(
+        service.updateData(
+          path: EndPoints.updateOrder,
+          data: {'status': status.toJson()},
+          documentId: orderId,
+        ),
+      );
+    } catch (e) {
+      return Left(ServerFailure('failed to update order status!.'));
+    }
   }
 }

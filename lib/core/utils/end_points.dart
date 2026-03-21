@@ -5,5 +5,5 @@ abstract class EndPoints {
   static const String isUserExists = 'Users';
   static const String addProductsCollection = 'Products';
   static const String getOrders = "Orders";
-
+  static const String updateOrder = "Orders";
 }

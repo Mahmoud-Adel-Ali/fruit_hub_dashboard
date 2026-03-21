@@ -7,7 +7,7 @@ import '../entities/order_entity.dart';
 abstract class OrdersRepo {
   Stream<Either<Failure, List<OrderEntity>>> fetchOrders();
 
-  Future<Either<Failure, void>> updateOrderStatus({
+  Future<Either<Failure, void>> updateOrder({
     required OrderStatus status,
     required String orderId,
   });
