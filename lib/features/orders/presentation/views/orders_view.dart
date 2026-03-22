@@ -8,8 +8,10 @@ import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_styles.dart';
 import '../../domain/repos/orders_repo.dart';
 import '../manager/fetch_orders_cubit/fetch_orders_cubit.dart';
+import '../manager/update_order_cubit/update_order_cubit.dart';
 import 'widgets/filter_section.dart';
 import 'widgets/orders_view_body.dart';
+import 'widgets/update_order_consumer.dart';
 
 class OrdersView extends StatelessWidget {
   const OrdersView({super.key});
@@ -25,9 +27,18 @@ class OrdersView extends StatelessWidget {
         flexibleSpace: Container(color: AppColors.lightGreyWithOpacity),
         title: Text('Orders', style: AppTextStyles.bold19),
       ),
-      body: BlocProvider(
-        create: (context) => FetchOrdersCubit(repo: getit.get<OrdersRepo>()),
-        child: OrdersViewBodyBlocConsumer(),
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider<FetchOrdersCubit>(
+            create: (context) =>
+                FetchOrdersCubit(repo: getit.get<OrdersRepo>()),
+          ),
+          BlocProvider<UpdateOrderCubit>(
+            create: (context) =>
+                UpdateOrderCubit(repo: getit.get<OrdersRepo>()),
+          ),
+        ],
+        child: const UpdateOrderConsumer(child: OrdersViewBodyBlocConsumer()),
       ),
     );
   }
