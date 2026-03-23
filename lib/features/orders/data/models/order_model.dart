@@ -6,6 +6,7 @@ import 'shipping_address_model.dart';
 class OrderModel {
   final double totalPrice;
   final String uId;
+  final String orderId;
   final ShippingAddressModel shippingAddress;
   final List<OrderProductModel> orderProducts;
   final String paymentMethod;
@@ -14,6 +15,7 @@ class OrderModel {
   OrderModel({
     required this.totalPrice,
     required this.uId,
+    required this.orderId,
     required this.shippingAddress,
     required this.orderProducts,
     required this.paymentMethod,
@@ -24,6 +26,7 @@ class OrderModel {
     return <String, dynamic>{
       'totalPrice': totalPrice,
       'uId': uId,
+      'orderId': orderId,
       'status': status.toJson(),
       'date': DateTime.now().toString(),
       'shippingAddress': shippingAddress.toJson(),
@@ -35,6 +38,7 @@ class OrderModel {
   factory OrderModel.fromJson(Map<String, dynamic> json) => OrderModel(
     totalPrice: json['totalPrice'].toDouble(),
     uId: json['uId'],
+    orderId: json['orderId'],
     status: OrderStatusEx.fromJson(json['status']),
     shippingAddress: ShippingAddressModel.fromJson(json['shippingAddress']),
     orderProducts: List<OrderProductModel>.from(
@@ -46,6 +50,7 @@ class OrderModel {
   OrderEntity toEntity() => OrderEntity(
     totalPrice: totalPrice,
     uId: uId,
+    orderId: orderId,
     status: status,
     shippingAddress: shippingAddress.toEntity(),
     orderProducts: orderProducts.map((x) => x.toEntity()).toList(),

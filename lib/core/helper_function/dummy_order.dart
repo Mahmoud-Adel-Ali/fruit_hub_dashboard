@@ -26,6 +26,7 @@ class DummyOrder {
 
     return OrderEntity(
       totalPrice: total,
+      orderId: "ORDER_${_random.nextInt(99999)}",
       uId: "USER_${_random.nextInt(99999)}",
       paymentMethod: _random.nextBool() ? "cash" : "card",
       status: OrderStatus.pending,
